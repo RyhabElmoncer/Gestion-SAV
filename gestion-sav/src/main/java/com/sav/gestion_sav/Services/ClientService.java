@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ClientService {
 
-    //  Gestion du compte
+    /* //  Gestion du compte
     ClientDTO modifierProfil(ClientDTO clientDTO);
     void supprimerCompte(String clientId);
 
@@ -17,5 +17,5 @@ public interface ClientService {
     List<ReclamationDTO> listerReclamations(Long clientId);
     ReclamationDTO modifierReclamation(Long reclamationId, ReclamationDTO reclamationDTO);
     void supprimerReclamation(Long reclamationId);
-    String suivreReclamation(Long reclamationId);  // Retourne l'état
+    String suivreReclamation(Long reclamationId); */ // Retourne l'état
 }

@@ -1,12 +1,18 @@
 package com.sav.gestion_sav.DTO;
 
-import lombok.*;
+public class ClientDTO {
+    private Long id;
+    private String username;
+    private String email;
+    private String lastName;
+    private String role;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class ClientDTO extends UserDTO {
-    private String adresse;
+    public static ClientDTOBuilder clientBuilder() {
+        return new ClientDTOBuilder();
+    }
+
+    // Vos autres méthodes et le builder pour ClientDTO
+    public static class ClientDTOBuilder {
+        // Implémentation spécifique à ClientDTO
+    }
 }

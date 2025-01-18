@@ -6,7 +6,14 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class TechnicienDTO extends UserDTO {
     private String specialite;
+    public static TechnicienDTO.TechnicienDTOBuilder technicienDTO() {
+        return new TechnicienDTO.TechnicienDTOBuilder();
+    }
+
+    // Vos autres méthodes et le builder pour ClientDTO
+    public static class TechnicienDTOBuilder {
+        // Implémentation spécifique à ClientDTO
+    }
 }
