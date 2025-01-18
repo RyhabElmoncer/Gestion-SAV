@@ -31,11 +31,7 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/authenticate",
             "/api/v1/auth/register",
-            "/api/rendezvous/demander",
-            "/api/rendezvous/all",
-            "/api/rendezvous/**",
-            "/api/ordonnances/**",
-            "/api/users/**"
+
     };
 
     private final JwtAuthenticationFilter jwtAuthFilter;

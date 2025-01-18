@@ -8,9 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Utilisation de SINGLE_TABLE pour l'héritage
-@DiscriminatorColumn(name = "user_role", discriminatorType = DiscriminatorType.STRING) // Renamed the discriminator column
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_role", discriminatorType = DiscriminatorType.STRING)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,32 +29,32 @@ public class User implements UserDetails {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role") // Ensure the role field maps correctly
+    @Column(name = "role")
     private Role role;
 
     // Méthodes de l'interface UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList(); // Pas de rôles supplémentaires à renvoyer
+        return Collections.emptyList();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Compte valide par défaut
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Compte non verrouillé par défaut
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Identifiants valides par défaut
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Compte activé par défaut
+        return true;
     }
 }
