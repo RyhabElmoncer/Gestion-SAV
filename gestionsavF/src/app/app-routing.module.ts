@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardClientComponent } from './components/dashboard-client/dashboard-client.component';
-import { DashboardResponsableComponent } from './components/dashboard-responsable/dashboard-responsable.component';
-import { DashboardTechnicienComponent } from './components/dashboard-technicien/dashboard-technicien.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { AuthGuard } from './AuthGuard/auth.guard';
-import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-const ROLE_CLIENT = 'CLIENT';
-const ROLE_RESPONSABLE = 'RESPONSABLE_SAV';
-const ROLE_TECHNICIEN = 'TECHNICIEN';
+import { ForbiddenComponent } from './core/forbidden/forbidden.component'; // Page Forbidden
+import { AuthGuard } from './core/Guard/auth.guard'; // AuthGuard pour protéger les routes
+import { DashboardClientComponent } from './features/dashboard/dashboard-client/dashboard-client.component';
+
 const routes: Routes = [
-  { path: 'dashboard-client', component: DashboardClientComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' } },
-  { path: 'dashboard-responsable', component: DashboardResponsableComponent, canActivate: [AuthGuard], data: { role: 'RESPONSABLE_SAV' } },
-  { path: 'dashboard-technicien', component: DashboardTechnicienComponent, canActivate: [AuthGuard], data: { role: 'TECHNICIEN' } },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'forbidden', component: ForbiddenComponent },
-
-  { path: '**', redirectTo: 'login' } 
-
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/Auth/auth.module').then((m) => m.AuthModule), // Lazy loading du module Auth
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule), // Lazy loading du module Dashboard
+     // Protéger la route avec AuthGuard
+  },
+  { path: 'forbidden', component: ForbiddenComponent }, // Page interdite
+  { path: '**', redirectTo: 'auth/login', pathMatch: 'full' }, 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

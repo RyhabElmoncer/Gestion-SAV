@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('../../../assets/NN.jpg') no-repeat right center; /* Image en arrière-plan, positionnée à droite */
+    background: url('/assets/NN.jpg') no-repeat right center; /* Image en arrière-plan, positionnée à droite */
     
     background-size: 30%; 
         position: relative;

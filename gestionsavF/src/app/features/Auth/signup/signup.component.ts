@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SignupComponent {
   signupForm: FormGroup; // Formulaire de création de compte
   isSubmitting = false;  // Indique si une requête est en cours
-  errorMessage: string | null = null; // Pour afficher les messages d'erreur
+  errorMessage: string | null = null;   
 
   constructor(
     private formBuilder: FormBuilder,

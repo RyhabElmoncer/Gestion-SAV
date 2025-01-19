@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -54,6 +54,9 @@ export class LoginComponent {
         localStorage.setItem('token', response.access_token); // Stocker le token JWT
         localStorage.setItem('role', role); // Stocker le rôle utilisateur
 
+        // Vérification du stockage local
+        console.log('Stockage local après redirection :', localStorage);
+
         // Rediriger vers le tableau de bord approprié
         this.redirectToDashboard(role);
         this.isSubmitting = false;
@@ -67,23 +70,22 @@ export class LoginComponent {
     );
   }
 
-  /**
-   * Redirige l'utilisateur vers le tableau de bord en fonction de son rôle.
-   * @param role Rôle de l'utilisateur
-   */
   redirectToDashboard(role: string) {
-    switch (role) {
-      case 'CLIENT':
-        this.router.navigate(['/dashboard-client']);
-        break;
-      case 'RESPONSABLE_SAV':
-        this.router.navigate(['/dashboard-responsable']);
-        break;
-      case 'TECHNICIEN':
-        this.router.navigate(['/dashboard-technicien']);
-        break;
-      default:
-        this.errorMessage = 'Rôle utilisateur non reconnu.';
+    const roleToRouteMap: { [key: string]: string } = {
+      CLIENT: 'dashboard/dashboard-client',
+      RESPONSABLE_SAV: 'dashboard/dashboard-responsable',
+      TECHNICIEN: 'dashboard/dashboard-technicien',
+    };
+  
+    const route = roleToRouteMap[role];
+    if (route) {
+      console.log(`Redirection vers ${route}`);
+      this.router.navigate([route]);
+    } else {
+      console.warn('Rôle utilisateur non reconnu.');
+      this.router.navigate(['/forbidden']);
     }
   }
+  
+  
 }

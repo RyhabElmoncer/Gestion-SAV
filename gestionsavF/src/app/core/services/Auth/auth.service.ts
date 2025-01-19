@@ -2,12 +2,13 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../../environments/environment'; // Importer l'environnement
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:9999/api/v1/auth'; // URL de votre backend
+  private apiUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) {}
 

@@ -1,35 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { DashboardClientComponent } from './components/dashboard-client/dashboard-client.component';
-import { DashboardResponsableComponent } from './components/dashboard-responsable/dashboard-responsable.component';
-import { DashboardTechnicienComponent } from './components/dashboard-technicien/dashboard-technicien.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { AppRoutingModule } from './app-routing.module'; // Importation des routes
+import { AppComponent } from './app.component'; // Composant principal
+import { AuthGuard } from './core/Guard/auth.guard';
+import { DashRoutingModule } from './features/dashboard/dash-routing.module';
 
 @NgModule({
+  
   declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    DashboardClientComponent,
-    DashboardResponsableComponent,
-    DashboardTechnicienComponent,
-    ForbiddenComponent
+    AppComponent, // Déclaration du composant principal
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule, // Ajoutez FormsModule ici pour [(ngModel)]
-    ReactiveFormsModule,
-    HttpClientModule,
+    DashRoutingModule,
+    BrowserModule, // Nécessaire pour toute application Angular
+    HttpClientModule, // Pour effectuer des requêtes HTTP
+    AppRoutingModule, // Importation des routes
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard], // Fournisseur du guard d'authentification
+  bootstrap: [AppComponent], // Démarrage de l'application avec AppComponent
 })
-export class AppModule { }
+export class AppModule {}
