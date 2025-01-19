@@ -23,11 +23,6 @@ export class AuthService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
-  /**
-   * Authentification
-   * @param data Les données d'authentification (email, mot de passe, etc.)
-   * @returns Observable de la réponse
-   */
   authenticate(data: any): Observable<any> {
     return this.http
       .post(`${this.apiUrl}/authenticate`, data, { headers: this.getDefaultHeaders() })
