@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-responsable.component.css'
 })
 export class DashboardResponsableComponent {
-
 }

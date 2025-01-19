@@ -24,7 +24,4 @@ public class Article {
     private int dureeGarantie; // Durée en mois
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
 }

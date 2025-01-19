@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ForbiddenComponent } from './core/forbidden/forbidden.component'; // Page Forbidden
-import { AuthGuard } from './core/Guard/auth.guard'; // AuthGuard pour protéger les routes
-import { DashboardClientComponent } from './features/dashboard/dashboard-client/dashboard-client.component';
 
 const routes: Routes = [
   {

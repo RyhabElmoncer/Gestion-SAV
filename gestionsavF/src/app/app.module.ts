@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module'; // Importation des rout
 import { AppComponent } from './app.component'; // Composant principal
 import { AuthGuard } from './core/Guard/auth.guard';
 import { DashRoutingModule } from './features/dashboard/dash-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   
@@ -16,7 +17,7 @@ import { DashRoutingModule } from './features/dashboard/dash-routing.module';
     BrowserModule, // Nécessaire pour toute application Angular
     HttpClientModule, // Pour effectuer des requêtes HTTP
     AppRoutingModule, // Importation des routes
-    
+    RouterModule
   ],
   providers: [AuthGuard], // Fournisseur du guard d'authentification
   bootstrap: [AppComponent], // Démarrage de l'application avec AppComponent

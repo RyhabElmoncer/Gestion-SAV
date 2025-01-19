@@ -1,5 +1,6 @@
 package com.sav.gestion_sav.Model;
 
+import com.sav.gestion_sav.Enum.StatutReclamation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,5 +30,6 @@ public class Reclamation {
 
     private LocalDate dateSoumission;
 
-    private String statut; // En attente, En cours, etc.
+    @Enumerated(EnumType.STRING)
+    private StatutReclamation statut;
 }

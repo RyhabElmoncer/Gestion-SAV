@@ -16,5 +16,4 @@ public class ArticleDTO {
     private LocalDate dateAchat;
     private int dureeGarantie; // Durée en mois
     private String description;
-    private Long clientId; // Identifiant du client propriétaire
 }
