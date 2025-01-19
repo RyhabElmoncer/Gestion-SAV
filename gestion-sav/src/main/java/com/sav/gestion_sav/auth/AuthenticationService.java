@@ -41,6 +41,8 @@ public class AuthenticationService {
             .username(request.getUsername())
             .lastName(request.getLastname())
             .email(request.getEmail())
+            .adresse(request.getAdresse())
+            .specialite(request.getSpecialite())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(role)
             .build();
@@ -80,7 +82,7 @@ public class AuthenticationService {
               .accessToken(jwtToken)
               .refreshToken(refreshToken)
               .role(user.getRole().toString())
-              .id(user.getId())// Convert role to String
+              .id(user.getId())
               .build();
 
     } catch (Exception e) {
