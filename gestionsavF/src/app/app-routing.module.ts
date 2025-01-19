@@ -6,13 +6,18 @@ import { DashboardTechnicienComponent } from './components/dashboard-technicien/
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthGuard } from './AuthGuard/auth.guard';
-
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+const ROLE_CLIENT = 'CLIENT';
+const ROLE_RESPONSABLE = 'RESPONSABLE_SAV';
+const ROLE_TECHNICIEN = 'TECHNICIEN';
 const routes: Routes = [
   { path: 'dashboard-client', component: DashboardClientComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' } },
   { path: 'dashboard-responsable', component: DashboardResponsableComponent, canActivate: [AuthGuard], data: { role: 'RESPONSABLE_SAV' } },
   { path: 'dashboard-technicien', component: DashboardTechnicienComponent, canActivate: [AuthGuard], data: { role: 'TECHNICIEN' } },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
+
   { path: '**', redirectTo: 'login' } 
 
 ];

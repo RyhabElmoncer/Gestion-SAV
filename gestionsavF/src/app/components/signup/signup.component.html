@@ -48,7 +48,19 @@
             Une adresse e-mail valide est requise.
           </p>
         </div>
-  
+        <div class="form-group">
+          <label for="adresse">adresse</label>
+          <input
+            type="adresse"
+            id="adresse"
+            class="form-control"
+            placeholder="Entrez votre adresse"
+            formControlName="adresse"
+          />
+          <p *ngIf="signupForm.get('adresse')?.invalid && signupForm.get('adresse')?.touched" class="error">
+            
+          </p>
+        </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
           <input

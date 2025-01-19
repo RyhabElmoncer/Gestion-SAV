@@ -10,6 +10,7 @@ import { DashboardResponsableComponent } from './components/dashboard-responsabl
 import { DashboardTechnicienComponent } from './components/dashboard-technicien/dashboard-technicien.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     DashboardClientComponent,
     DashboardResponsableComponent,
-    DashboardTechnicienComponent
+    DashboardTechnicienComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

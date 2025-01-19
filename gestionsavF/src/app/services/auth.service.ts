@@ -1,41 +1,76 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
-import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:9999/api/v1/auth'; // Remplacez par l'URL réelle de votre backend
+  private apiUrl = 'http://localhost:9999/api/v1/auth'; // URL de votre backend
 
   constructor(private http: HttpClient) {}
 
-  // Inscription
+  /**
+   * Inscription
+   * @param data Les données de l'utilisateur
+   * @returns Observable de la réponse
+   */
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data, { headers: this.getHeaders() })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http
+      .post(`${this.apiUrl}/register`, data, { headers: this.getDefaultHeaders() })
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
-
+  /**
+   * Authentification
+   * @param data Les données d'authentification (email, mot de passe, etc.)
+   * @returns Observable de la réponse
+   */
   authenticate(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/authenticate`, data, this.getRequestOptions())
-      .pipe(catchError(this.handleError));
+    return this.http
+      .post(`${this.apiUrl}/authenticate`, data, { headers: this.getDefaultHeaders() })
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
-  private getRequestOptions() {
-    return {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    };
+  /**
+   * Rafraîchissement du token
+   * @param refreshToken Le token de rafraîchissement
+   * @returns Observable de la réponse
+   */
+  refreshToken(refreshToken: string): Observable<any> {
+    const headers = this.getHeadersWithToken(refreshToken);
+    return this.http
+      .post(`${this.apiUrl}/refresh-token`, {}, { headers })
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
-  private handleError(error: any): Observable<never> {
+  /**
+   * Obtenir les en-têtes par défaut
+   * @returns HttpHeaders avec `Content-Type: application/json`
+   */
+  private getDefaultHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Content-Type', 'application/json');
+  }
+
+  /**
+   * Obtenir les en-têtes avec token
+   * @param token Le token JWT ou de rafraîchissement
+   * @returns HttpHeaders avec `Authorization` et `Content-Type`
+   */
+  private getHeadersWithToken(token: string): HttpHeaders {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
+  }
+
+  /**
+   * Gestion des erreurs HTTP
+   * @param error Erreur HTTP
+   * @returns Observable d'erreur
+   */
+  private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Une erreur est survenue';
-  
     if (error.error instanceof ErrorEvent) {
       // Erreur côté client
       errorMessage = `Erreur client : ${error.error.message}`;
@@ -43,26 +78,7 @@ export class AuthService {
       // Erreur côté serveur
       errorMessage = `Erreur serveur : ${error.status} - ${error.error.message || error.message}`;
     }
-    
-    console.error(errorMessage); // Log du détail pour déboguer
-    return throwError(errorMessage);
-  }
-  
-  // Rafraîchissement du token
-  refreshToken(refreshToken: string): Observable<any> {
-    const headers = this.getHeaders(refreshToken); // Utilisation du token de rafraîchissement
-    return this.http.post(`${this.apiUrl}/refresh-token`, {}, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  // Méthode pour obtenir les headers, ajoute l'Authorization si le token est fourni
-  private getHeaders(refreshToken: string = ''): HttpHeaders {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json'); // Type de contenu par défaut
-    if (refreshToken) {
-      headers = headers.set('Authorization', `Bearer ${refreshToken}`); // Ajout de l'en-tête Authorization si nécessaire
-    }
-    return headers;
+    console.error('[Erreur AuthService]', errorMessage, error); // Debug dans la console
+    return throwError(() => new Error(errorMessage));
   }
 }

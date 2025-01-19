@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-client.component.css'
 })
 export class DashboardClientComponent {
+  section: string = 'profile'; // Section par défaut
 
+  setSection(section: string) {
+    this.section = section;
+  }
 }
