@@ -1,0 +1,102 @@
+<div class="container mt-5">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h2 class="text-center mb-0">Ajouter un Article</h2>
+      </div>
+      <div class="card-body">
+        <form #articleForm="ngForm" (ngSubmit)="onSubmit(articleForm)">
+          <!-- Nom -->
+          <div class="mb-3">
+            <label for="nom" class="form-label">Nom :</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              class="form-control"
+              placeholder="Entrez le nom de l'article"
+              [(ngModel)]="article.nom"
+              required
+            />
+            <div class="form-text text-danger" *ngIf="articleForm.form.controls['nom']?.invalid && articleForm.form.controls['nom']?.touched">
+              Le nom est requis.
+            </div>
+          </div>
+  
+          <!-- Marque -->
+          <div class="mb-3">
+            <label for="marque" class="form-label">Marque :</label>
+            <input
+              type="text"
+              id="marque"
+              name="marque"
+              class="form-control"
+              placeholder="Entrez la marque de l'article"
+              [(ngModel)]="article.marque"
+              required
+            />
+            <div class="form-text text-danger" *ngIf="articleForm.form.controls['marque']?.invalid && articleForm.form.controls['marque']?.touched">
+              La marque est requise.
+            </div>
+          </div>
+  
+          <!-- Date d'Achat -->
+          <div class="mb-3">
+            <label for="dateAchat" class="form-label">Date d'Achat :</label>
+            <input
+              type="date"
+              id="dateAchat"
+              name="dateAchat"
+              class="form-control"
+              [(ngModel)]="article.dateAchat"
+              required
+            />
+            <div class="form-text text-danger" *ngIf="articleForm.form.controls['dateAchat']?.invalid && articleForm.form.controls['dateAchat']?.touched">
+              La date d'achat est requise.
+            </div>
+          </div>
+  
+          <!-- Durée de Garantie -->
+          <div class="mb-3">
+            <label for="dureeGarantie" class="form-label">Durée de Garantie (mois) :</label>
+            <input
+              type="number"
+              id="dureeGarantie"
+              name="dureeGarantie"
+              class="form-control"
+              placeholder="Entrez la durée de garantie en mois"
+              [(ngModel)]="article.dureeGarantie"
+              required
+            />
+            <div class="form-text text-danger" *ngIf="articleForm.form.controls['dureeGarantie']?.invalid && articleForm.form.controls['dureeGarantie']?.touched">
+              La durée de garantie est requise.
+            </div>
+          </div>
+  
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description :</label>
+            <textarea
+              id="description"
+              name="description"
+              class="form-control"
+              rows="4"
+              placeholder="Entrez une description pour l'article"
+              [(ngModel)]="article.description"
+              required
+            ></textarea>
+            <div class="form-text text-danger" *ngIf="articleForm.form.controls['description']?.invalid && articleForm.form.controls['description']?.touched">
+              La description est requise.
+            </div>
+          </div>
+  
+          <!-- Bouton Ajouter -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="articleForm.invalid">
+              <i class="bi bi-plus-circle"></i> Ajouter
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,33 @@
+<div class="article-container">
+    <h2>Liste des articles</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Marque</th>
+          <th>Date d'achat</th>
+          <th>Durée de garantie</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles">
+          <td>{{ article.nom }}</td>
+          <td>{{ article.marque }}</td>
+          <td>{{ article.dateAchat }}</td>
+          <td>{{ article.dureeGarantie }} ans</td>
+          <td>{{ article.description }}</td>
+          <td>
+            <button (click)="supprimerArticle(article.id)" title="Supprimer">
+              <img src="assets/icons/delete-icon.svg" alt="Supprimer" class="icon">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="articles.length === 0">Aucun article trouvé.</p>
+  </div>
+  
