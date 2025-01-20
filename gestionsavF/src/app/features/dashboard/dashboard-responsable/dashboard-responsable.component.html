@@ -1,22 +1,48 @@
 <mat-toolbar color="primary" class="app-toolbar">
-    <div class="toolbar-content">
-      <span class="toolbar-title">Dashboard Client</span>
-    </div>
-  
-    <div class="toolbar-buttons">
-      <button mat-raised-button color="primary" [routerLink]="['/dashboard-responsable/ajouter-article']" class="toolbar-btn">
-        <mat-icon>add</mat-icon> Ajouter Article
-      </button>
-      <button mat-raised-button color="primary" [routerLink]="['/dashboard-responsable/liste-articles']" class="toolbar-btn">
-        <mat-icon>view_list</mat-icon> Liste des Articles
-      </button>
-      <button mat-raised-button color="primary" [routerLink]="['/dashboard-responsable/liste-reclamations']" class="toolbar-btn">
-        <mat-icon>feedback</mat-icon> Liste des Réclamations
-      </button>
-    </div>
-  </mat-toolbar>
-  
-  <div class="container">
-    <router-outlet></router-outlet> <!-- Composants enfants affichés ici -->
+  <div class="toolbar-content">
+    <span class="toolbar-title">Dashboard Client</span>
   </div>
-  
+
+  <div class="toolbar-buttons">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      [routerLink]="['/dashboard-responsable/ajouter-article']" 
+      class="toolbar-btn"
+    >
+      <mat-icon>add</mat-icon> Ajouter Article
+    </button>
+
+    <button 
+      mat-raised-button 
+      color="primary" 
+      [routerLink]="['/dashboard-responsable/liste-articles']" 
+      class="toolbar-btn"
+    >
+      <mat-icon>view_list</mat-icon> Liste des Articles
+    </button>
+
+    <button 
+      mat-raised-button 
+      color="primary" 
+      [routerLink]="['/dashboard-responsable/liste-reclamations']" 
+      class="toolbar-btn"
+    >
+      <mat-icon>feedback</mat-icon> Liste des Réclamations
+    </button>
+
+    <!-- Bouton de déconnexion -->
+    <button 
+      mat-raised-button 
+      color="warn" 
+      (click)="logout()" 
+      class="toolbar-btn logout-btn"
+    >
+      <mat-icon>logout</mat-icon> Déconnexion
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet> <!-- Composants enfants affichés ici -->
+</div>

@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListeArticlesComponent } from './liste-articles/liste-articles.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-reclamation.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
     DashboardClientComponent,
     DashboardResponsableComponent, 
     AjouterArticleComponent, 
-    ListeArticlesComponent, ReclamationComponent, 
+    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, 
   ],
   imports: [
     CommonModule,
