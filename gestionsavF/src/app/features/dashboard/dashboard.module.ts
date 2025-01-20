@@ -18,6 +18,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListeArticlesComponent } from './liste-articles/liste-articles.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-reclamation.component';
+import { AjouterReclamationsComponent } from './ajouter-reclamations/ajouter-reclamations.component';
+import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-recla
     DashboardClientComponent,
     DashboardResponsableComponent, 
     AjouterArticleComponent, 
-    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, 
+    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, AjouterReclamationsComponent, MesReclamationsComponent, 
   ],
   imports: [
     CommonModule,

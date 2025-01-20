@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="app-toolbar">
+    <div class="toolbar-content">
+      <span class="toolbar-title">Dashboard Client</span>
+    </div>
+  
+    <div class="toolbar-buttons">
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [routerLink]="['/dashboard-client/ajouter-rec']" 
+        class="toolbar-btn"
+      >
+        <mat-icon>add</mat-icon> Ajouter Reclamations
+      </button>
+  
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [routerLink]="['/dashboard-client/liste-rec']" 
+        class="toolbar-btn"
+      >
+        <mat-icon>view_list</mat-icon> mes reclamations
+      </button>
+  
+      <button 
+        mat-raised-button 
+        color="warn" 
+        (click)="logout()" 
+        class="toolbar-btn logout-btn"
+      >
+        <mat-icon>logout</mat-icon> Déconnexion
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <div class="container">
+    <router-outlet></router-outlet> <!-- Composants enfants affichés ici -->
+  </div>
+  

@@ -1,0 +1,49 @@
+/* Barre d'outils : fond bleu et alignement */
+.app-toolbar {
+    background-color: #1e88e5; /* Bleu foncé Material */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  /* Titre du toolbar */
+  .toolbar-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  /* Section des boutons */
+  .toolbar-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Espacement entre boutons */
+  }
+  
+  /* Boutons : style épuré */
+  .toolbar-btn {
+    display: flex;
+    align-items: center;
+    background-color: white; /* Fond blanc */
+    color: #1e88e5; /* Texte bleu */
+    padding: 10px 20px;
+    border-radius: 5px; /* Bords arrondis */
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .toolbar-btn:hover {
+    transform: scale(1.05); /* Effet agrandissement */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ombre prononcée */
+  }
+  
+  /* Conteneur principal pour le contenu */
+  .container {
+    margin: 20px auto;
+    max-width: 1200px;
+    text-align: center;
+  }
+  
