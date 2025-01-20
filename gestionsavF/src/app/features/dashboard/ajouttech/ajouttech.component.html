@@ -1,0 +1,107 @@
+<div class="signup-page">
+    <div class="overlay"></div> <!-- Superposition sombre -->
+    <div class="signup-container">
+     
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <!-- Champ Nom d'utilisateur -->
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            placeholder="Entrez votre nom d'utilisateur"
+            formControlName="username"
+          />
+          <p *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="error">
+            Ce champ est obligatoire.
+          </p>
+        </div>
+  
+        <!-- Champ Prénom -->
+        <div class="form-group">
+          <label for="lastname">Prénom</label>
+          <input
+            type="text"
+            id="lastname"
+            class="form-control"
+            placeholder="Entrez votre prénom"
+            formControlName="lastname"
+          />
+          <p *ngIf="signupForm.get('lastname')?.invalid && signupForm.get('lastname')?.touched" class="error">
+            Ce champ est obligatoire.
+          </p>
+        </div>
+  
+        <!-- Champ Email -->
+        <div class="form-group">
+          <label for="email">Adresse e-mail</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Entrez votre email"
+            formControlName="email"
+          />
+          <p *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched" class="error">
+            Ce champ est obligatoire.
+          </p>
+          <p *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched" class="error">
+            Entrez une adresse e-mail valide.
+          </p>
+        </div>
+  
+        <!-- Champ Adresse -->
+        <div class="form-group">
+          <label for="adresse">Adresse</label>
+          <input
+            type="text"
+            id="adresse"
+            class="form-control"
+            placeholder="Entrez votre adresse"
+            formControlName="adresse"
+          />
+          <p *ngIf="signupForm.get('adresse')?.hasError('required') && signupForm.get('adresse')?.touched" class="error">
+            Ce champ est obligatoire.
+          </p>
+          <p *ngIf="signupForm.get('adresse')?.hasError('minlength') && signupForm.get('adresse')?.touched" class="error">
+            L'adresse doit contenir au moins 6 caractères.
+          </p>
+        </div>
+  
+        <!-- Champ Mot de passe -->
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Entrez votre mot de passe"
+            formControlName="password"
+          />
+          <p *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" class="error">
+            Ce champ est obligatoire.
+          </p>
+          <p *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched" class="error">
+            Le mot de passe doit contenir au moins 6 caractères.
+          </p>
+        </div>
+  
+        <!-- Bouton S'inscrire -->
+        <button
+          type="submit"
+          [disabled]="isSubmitting || signupForm.invalid"
+          class="btn-signup"
+        >
+          Ajouter
+        </button>
+      </form>
+  
+      <!-- Message d'erreur général -->
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+      <!-- Lien de connexion -->
+     
+    </div>
+  </div>
+  

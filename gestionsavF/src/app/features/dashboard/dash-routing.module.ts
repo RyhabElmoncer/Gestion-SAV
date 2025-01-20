@@ -10,6 +10,7 @@ import { DashboardTechnicienComponent } from '../Auth/dashboard-technicien/dashb
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-reclamation.component';
 import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.component';
+import { AjouttechComponent } from './ajouttech/ajouttech.component';
 const routes: Routes = [
   { path: 'dashboard-client', component: DashboardClientComponent ,children: [
     { path: 'ajouter-rec', component: AjouterReclamationComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'ajouter-article', component: AjouterArticleComponent },
     { path: 'liste-articles', component: ListeArticlesComponent },
     { path: 'liste-reclamations', component: ReclamationComponent },
+    { path: 'Ajouttech', component: AjouttechComponent },
   ]},
   { path: 'dashboard-technicien', component: DashboardTechnicienComponent},
 

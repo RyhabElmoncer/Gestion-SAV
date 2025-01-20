@@ -20,6 +20,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-reclamation.component';
 import { AjouterReclamationsComponent } from './ajouter-reclamations/ajouter-reclamations.component';
 import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.component';
+import { AjouttechComponent } from './ajouttech/ajouttech.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.co
     DashboardClientComponent,
     DashboardResponsableComponent, 
     AjouterArticleComponent, 
-    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, AjouterReclamationsComponent, MesReclamationsComponent, 
+    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, AjouterReclamationsComponent, MesReclamationsComponent, AjouttechComponent, 
   ],
   imports: [
     CommonModule,
