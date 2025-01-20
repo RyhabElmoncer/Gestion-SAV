@@ -18,9 +18,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListeArticlesComponent } from './liste-articles/liste-articles.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-reclamation.component';
-import { AjouterReclamationsComponent } from './ajouter-reclamations/ajouter-reclamations.component';
 import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.component';
 import { AjouttechComponent } from './ajouttech/ajouttech.component';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,15 @@ import { AjouttechComponent } from './ajouttech/ajouttech.component';
     DashboardClientComponent,
     DashboardResponsableComponent, 
     AjouterArticleComponent, 
-    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, AjouterReclamationsComponent, MesReclamationsComponent, AjouttechComponent, 
+    ListeArticlesComponent, ReclamationComponent, AjouterReclamationComponent, AjouterReclamationComponent, MesReclamationsComponent, AjouttechComponent, 
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
         FormsModule,
+        BrowserAnimationsModule, // Ce module est essentiel pour les animations
+        MatFormFieldModule,
+    MatInputModule,
         MatToolbarModule, 
         RouterModule,
         MatIconModule,

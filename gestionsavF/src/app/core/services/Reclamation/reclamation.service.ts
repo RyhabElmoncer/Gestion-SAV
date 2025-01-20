@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reclamation } from '../../../models/Reclamation';
-
-import { environment } from '../../../../../environments/environment'; // Importer l'environnement
-
+import { environment } from '../../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ReclamationService {
-  private apiUrl: string = `${environment.apiUrl}/reclamations`;  // L'URL de votre API
+  private apiUrl: string = `${environment.apiUrl}/reclamations`; 
 
   constructor(private http: HttpClient) {}
 

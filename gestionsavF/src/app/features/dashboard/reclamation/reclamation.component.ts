@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamationService } from '../../../core/services/Reclamation/reclamation.service';
+import { Reclamation } from '../../../models/Reclamation';
 
-interface ReclamationDTO {
-  id?: number;
-  description: string;
-  date: string;
-  status: string;
-}
+
 
 @Component({
   selector: 'app-reclamation',
@@ -14,7 +10,7 @@ interface ReclamationDTO {
   styleUrls: ['./reclamation.component.css']
 })
 export class ReclamationComponent implements OnInit {
-  reclamations: ReclamationDTO[] = [];
+  reclamations: Reclamation[] = [];
 
   constructor(private reclamationService: ReclamationService) {}
 

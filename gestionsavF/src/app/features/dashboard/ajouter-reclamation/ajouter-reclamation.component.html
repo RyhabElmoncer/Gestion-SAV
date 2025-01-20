@@ -1,1 +1,28 @@
-<p>ajouter-reclamation works!</p>
+<div class="ajouter-reclamation-container">
+    <h2>Ajouter une réclamation</h2>
+  
+    <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea 
+          matInput 
+          formControlName="description" 
+          placeholder="Décrivez votre problème">
+        </textarea>
+        <mat-error *ngIf="reclamationForm.get('description')?.invalid && reclamationForm.get('description')?.touched">
+          La description est requise (min. 10 caractères)
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="full-width">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" formControlName="date">
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon>send</mat-icon> Soumettre
+      </button>
+      
+    </form>
+  </div>
+  

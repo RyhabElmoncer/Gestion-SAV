@@ -22,6 +22,13 @@ public class ReclamationController {
     public ResponseEntity<List<ReclamationDTO>> obtenirToutesReclamations() {
         return ResponseEntity.ok(reclamationService.obtenirToutesReclamations());
     }
+    @PutMapping("/reclamations/{id}/statut")
+    public ResponseEntity<ReclamationDTO> changerStatut(
+            @PathVariable Long id,
+            @RequestParam String statut) {
+        ReclamationDTO updatedReclamation = reclamationService.changerStatutReclamation(id, statut);
+        return ResponseEntity.ok(updatedReclamation);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ReclamationDTO> obtenirReclamationParId(@PathVariable Long id) {

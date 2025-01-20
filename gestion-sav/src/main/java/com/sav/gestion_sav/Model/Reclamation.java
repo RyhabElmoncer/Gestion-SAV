@@ -18,14 +18,6 @@ public class Reclamation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
-
-    @ManyToOne
-    @JoinColumn(name = "article_id", nullable = false)
-    private Article article;
-
     private String description;
 
     private LocalDate dateSoumission;

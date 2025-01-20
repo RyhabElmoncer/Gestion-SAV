@@ -12,17 +12,9 @@
     <tbody>
       <tr *ngFor="let reclamation of reclamations">
         <td>{{ reclamation.description }}</td>
-        <td>{{ reclamation.date | date: 'shortDate' }}</td>
+        <td>{{ reclamation.dateSoumission | date: 'shortDate' }}</td>
         <td>
-          <span 
-            [ngClass]="{
-              'badge-success': reclamation.status === 'Traitée',
-              'badge-warning': reclamation.status === 'En cours',
-              'badge-danger': reclamation.status === 'Non traitée'
-            }"
-            class="status-badge">
-            {{ reclamation.status }}
-          </span>
+         
         </td>
       </tr>
     </tbody>
