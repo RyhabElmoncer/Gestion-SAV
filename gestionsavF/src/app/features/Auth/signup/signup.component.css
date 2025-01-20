@@ -4,15 +4,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('/assets/NN.jpg') no-repeat right center; /* Image en arrière-plan, positionnée à droite */
+    background: url('/assets/NN.jpg') no-repeat left center; /* Image en arrière-plan, positionnée à droite */
     
     background-size: 30%; 
         position: relative;
   }
- 
-  
-  
-  /* En-tête */
   .signup-header h2 {
     font-size: 20px;
     color: #007bff;
@@ -24,8 +20,6 @@
     font-size: 14px;
     color: #6c757d;
   }
-  
-  /* Champs du formulaire */
   .form-group {
     margin-bottom: 15px;
     text-align: left;
@@ -42,7 +36,7 @@
   input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ced4da;
+    border: 1px solid #094c8f;
     border-radius: 4px;
     font-size: 16px;
     box-sizing: border-box;
@@ -59,7 +53,7 @@
   .btn-signup {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #067107;
     border: none;
     border-radius: 5px;
     color: #ffffff;

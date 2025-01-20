@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { DashboardResponsableComponent } from './dashboard-responsable/dashboard-responsable.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
-import { DashboardTechnicienComponent } from '../Auth/dashboard-technicien/dashboard-technicien.component';
+import { DashboardTechnicienComponent } from './dashboard-technicien/dashboard-technicien.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AjouterArticleComponent } from './ajouter-article/ajouter-article.component';

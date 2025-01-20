@@ -5,7 +5,7 @@ import { AuthService } from '../../../core/services/Auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Correction ici
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
@@ -14,10 +14,6 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-
-  /**
-   * Gère la soumission du formulaire de connexion.
-   */
   onSubmit() {
     this.isSubmitting = true; // Désactiver le bouton de soumission
     this.errorMessage = ''; // Réinitialiser les messages d'erreur
@@ -35,13 +31,12 @@ export class LoginComponent {
 
     console.log('Données envoyées :', credentials);
 
-    // Appeler le service d'authentification
     this.authService.authenticate(credentials).subscribe(
       (response) => {
         console.log('Réponse reçue :', response);
 
-        const userId = response.id; // Assurez-vous que 'id' est présent dans la réponse
-        const role = response.role; // Assurez-vous que 'role' est correct dans la réponse
+        const userId = response.id; 
+        const role = response.role; 
 
         if (!response.access_token || !role) {
           this.errorMessage = 'Réponse du serveur invalide.';
@@ -49,15 +44,12 @@ export class LoginComponent {
           return;
         }
 
-        // Stocker les données dans localStorage
         localStorage.setItem('userId', userId.toString());
-        localStorage.setItem('token', response.access_token); // Stocker le token JWT
-        localStorage.setItem('role', role); // Stocker le rôle utilisateur
+        localStorage.setItem('token', response.access_token); 
+        localStorage.setItem('role', role); 
 
-        // Vérification du stockage local
         console.log('Stockage local après redirection :', localStorage);
 
-        // Rediriger vers le tableau de bord approprié
         this.redirectToDashboard(role);
         this.isSubmitting = false;
       },

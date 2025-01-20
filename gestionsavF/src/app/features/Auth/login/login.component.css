@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh; /* Utilisation de 100vh pour occuper toute la hauteur de la fenêtre */
     width: 100vw; /* Utilisation de 100vw pour occuper toute la largeur de la fenêtre */
-    background: url('/assets/NN.jpg') no-repeat right center; /* Image en arrière-plan, positionnée à droite */
+    background: url('/assets/NN.jpg') no-repeat left center; /* Image en arrière-plan, positionnée à droite */
     
     background-size: 30%; /* Réduit la taille de l'image à 50% de sa taille originale */
     filter: brightness(115%); /* Augmente la luminosité de l'image */
@@ -26,10 +26,10 @@
 /* Container du formulaire pour le centrer */
 .login-container {
     position: relative;
-    background-color: rgba(255, 255, 255, 0); /* Fond semi-transparent pour faire ressortir le formulaire */
+    background-color: rgba(245, 239, 239, 0); /* Fond semi-transparent pour faire ressortir le formulaire */
     padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0); /* Ajout d'une ombre pour donner du relief */
+    box-shadow: 0 4px 10px rgba(7, 75, 233, 0.934); /* Ajout d'une ombre pour donner du relief */
     width: 100%;
     max-width: 400px; /* Limite la largeur du formulaire */
     z-index: 2; /* Place le formulaire au-dessus de l'overlay */
