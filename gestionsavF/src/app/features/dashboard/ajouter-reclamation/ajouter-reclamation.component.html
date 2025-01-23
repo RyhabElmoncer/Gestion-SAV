@@ -13,7 +13,7 @@
       ></textarea>
       <div *ngIf="reclamationForm.controls['description'].invalid && reclamationForm.controls['description'].touched" class="text-danger">
         <small *ngIf="reclamationForm.controls['description'].hasError('required')">La description est requise.</small>
-        <small *ngIf="reclamationForm.controls['description'].hasError('minlength')">La description doit contenir au moins 10 caractères.</small>
+        <small *ngIf="reclamationForm.controls['description'].hasError('minlength')">La description doit contenir un texte .</small>
       </div>
     </div>
 

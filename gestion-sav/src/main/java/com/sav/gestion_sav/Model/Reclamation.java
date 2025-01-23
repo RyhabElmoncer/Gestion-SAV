@@ -21,7 +21,7 @@ public class Reclamation {
     private String description;
 
     private LocalDate dateSoumission;
-
+private String cin;
     @Enumerated(EnumType.STRING)
     private StatutReclamation statut;
     @ManyToOne

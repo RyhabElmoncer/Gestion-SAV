@@ -33,7 +33,8 @@ public class ReclamationService {
                 .description(reclamationDTO.getDescription())
                 .dateSoumission(LocalDate.now())
                 .statut(statut)
-                .article(article) // Associer l'article à la réclamation
+                .article(article)
+                .cin(reclamationDTO.getCin())
                 .build();
 
         Reclamation savedReclamation = reclamationRepository.save(reclamation);
@@ -62,7 +63,8 @@ public class ReclamationService {
                 .description(reclamation.getDescription())
                 .dateSoumission(reclamation.getDateSoumission())
                 .statut(reclamation.getStatut().name())
-                .articleId(reclamation.getArticle().getId()) // Inclure l'ID de l'article dans le DTO
+                .articleId(reclamation.getArticle().getId())
+                .cin(reclamation.getCin())// Inclure l'ID de l'article dans le DTO
                 .build();
     }
 

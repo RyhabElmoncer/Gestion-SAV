@@ -15,5 +15,5 @@ public class ReclamationDTO {
     private String description;
     private LocalDate dateSoumission;
     private String statut;
-
+    private String cin;
 }

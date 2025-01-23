@@ -32,7 +32,8 @@ public class SecurityConfiguration {
             "/api/v1/auth/authenticate",
             "/api/v1/auth/register",
             "/api/v1/auth/articles/**",
-            "/api/v1/auth/**"
+            "/api/v1/auth/**",
+            "/api/v1/auth/reclamations"
 
     };
 
