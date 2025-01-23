@@ -9,15 +9,25 @@ import { Reclamation } from '../../../models/Reclamation';
 })
 export class MesReclamationsComponent implements OnInit {
   reclamations: Reclamation[] = [];
+  cinUtilisateur: string | null = null;
 
   constructor(private reclamationService: ReclamationService) {}
 
   ngOnInit(): void {
-    this.chargerReclamations();
+    this.recupererCinDepuisLocalStorage();
+    if (this.cinUtilisateur) {
+      this.chargerReclamationsParCin(this.cinUtilisateur);
+    } else {
+      console.error("CIN utilisateur non trouvé dans le local storage.");
+    }
   }
 
-  private chargerReclamations(): void {
-    this.reclamationService.obtenirToutesReclamations().subscribe({
+  private recupererCinDepuisLocalStorage(): void {
+    this.cinUtilisateur = localStorage.getItem('cin');
+  }
+
+  private chargerReclamationsParCin(cin: string): void {
+    this.reclamationService.obtenirReclamationsParCin(cin).subscribe({
       next: (data) => (this.reclamations = data),
       error: (err) => console.error('Erreur lors de la récupération des réclamations :', err),
     });
