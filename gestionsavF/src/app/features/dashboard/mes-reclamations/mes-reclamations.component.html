@@ -5,7 +5,7 @@
     <thead class="table-dark">
       <tr>
         <th>Description</th>
-        <th>Date</th>
+        <th>Date de soumission</th>
         <th>Statut</th>
       </tr>
     </thead>
@@ -14,7 +14,13 @@
         <td>{{ reclamation.description }}</td>
         <td>{{ reclamation.dateSoumission | date: 'shortDate' }}</td>
         <td>
-         
+          <span [ngClass]="{
+            'text-warning': reclamation.statut === 'EN_COURS',
+            'text-success': reclamation.statut === 'TRAITEE',
+            'text-danger': reclamation.statut === 'EN_ATTENTE'
+          }">
+            {{ reclamation.statut }}
+          </span>
         </td>
       </tr>
     </tbody>
