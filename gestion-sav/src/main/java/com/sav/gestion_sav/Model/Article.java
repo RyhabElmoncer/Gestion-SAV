@@ -19,9 +19,9 @@ public class Article {
 
     private String nom;
     private String marque;
-    private LocalDate dateAchat;
-
-    private int dureeGarantie; // Durée en mois
     private String description;
-
+    private String dateAchat; // Ensure this is included
+    private int dureeGarantie;
+    private String cin;
 }
+

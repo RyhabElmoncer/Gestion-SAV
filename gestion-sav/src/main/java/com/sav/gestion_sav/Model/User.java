@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String lastName;
     private String adresse;
     private String specialite;
-
+    private int cin;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")

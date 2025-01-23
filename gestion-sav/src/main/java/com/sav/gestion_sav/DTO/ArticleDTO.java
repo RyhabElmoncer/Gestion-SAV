@@ -1,19 +1,20 @@
 package com.sav.gestion_sav.DTO;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class ArticleDTO {
     private Long id;
     private String nom;
     private String marque;
-    private LocalDate dateAchat;
-    private int dureeGarantie; // Durée en mois
     private String description;
+    private String dateAchat; // Ensure this is included
+    private int dureeGarantie;
+    private String cin; // Ensure this is included
+
+    // Getters and Setters
 }

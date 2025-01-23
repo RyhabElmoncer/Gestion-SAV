@@ -1,7 +1,7 @@
 package com.sav.gestion_sav.Controller;
 
 import com.sav.gestion_sav.DTO.ArticleDTO;
-import com.sav.gestion_sav.Service.ArticleService;
+import com.sav.gestion_sav.Services.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

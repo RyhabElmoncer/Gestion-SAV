@@ -1,4 +1,4 @@
-package com.sav.gestion_sav.Service;
+package com.sav.gestion_sav.Services;
 
 import com.sav.gestion_sav.DTO.ArticleDTO;
 import com.sav.gestion_sav.Mapper.ArticleMapper;
@@ -22,6 +22,7 @@ public class ArticleService {
 
     // Create or Update an article
     public ArticleDTO saveArticle(ArticleDTO articleDTO) {
+        System.out.println("Received articleDTO: " + articleDTO);
         Article article = articleMapper.toEntity(articleDTO);
         Article savedArticle = articleRepository.save(article);
         return articleMapper.toDTO(savedArticle);
