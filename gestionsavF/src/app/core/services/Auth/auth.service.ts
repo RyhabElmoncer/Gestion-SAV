@@ -22,7 +22,11 @@ export class AuthService {
       .post(`${this.apiUrl}/register`, data, { headers: this.getDefaultHeaders() })
       .pipe(catchError((error) => this.handleError(error)));
   }
-
+  registertech(data: any): Observable<any> {
+    return this.http
+      .post(`${this.apiUrl}/registertech`, data, { headers: this.getDefaultHeaders() })
+      .pipe(catchError((error) => this.handleError(error)));
+  }
   authenticate(data: any): Observable<any> {
     return this.http
       .post(`${this.apiUrl}/authenticate`, data, { headers: this.getDefaultHeaders() })

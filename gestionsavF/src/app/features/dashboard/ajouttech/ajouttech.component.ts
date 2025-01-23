@@ -39,11 +39,11 @@ export class AjouttechComponent { signupForm: FormGroup; // Formulaire de créat
     this.isSubmitting = true; // Activation du mode "soumission en cours"
     this.errorMessage = null;
 
-    this.authService.register(this.signupForm.value).subscribe({
+    this.authService.registertech(this.signupForm.value).subscribe({
       next: () => {
         console.log('Inscription réussie');
         this.isSubmitting = false;
-        this.router.navigate(['/login']); // Redirection après succès
+        
       },
       error: (err) => {
         console.error('Erreur lors de l\'inscription :', err);

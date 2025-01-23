@@ -1,0 +1,86 @@
+/* mes-reclamations.component.css */
+.reclamations-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #3f51b5;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .table-title i {
+    margin-right: 0.5rem;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .table thead th {
+    font-weight: bold;
+    background-color: #3f51b5;
+    color: white;
+    vertical-align: middle;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .table td, .table th {
+    padding: 0.75rem;
+    vertical-align: middle;
+  }
+  
+  .badge {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+  }
+  
+  .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+  }
+  
+  .badge.bg-success {
+    background-color: #28a745 !important;
+  }
+  
+  .badge.bg-danger {
+    background-color: #dc3545 !important;
+  }
+  
+  .alert {
+    margin-top: 1rem;
+  }
+  
+  /* Styles pour le bouton de déconnexion */
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+  
+  .btn-danger i {
+    margin-right: 0.5rem;
+  }
