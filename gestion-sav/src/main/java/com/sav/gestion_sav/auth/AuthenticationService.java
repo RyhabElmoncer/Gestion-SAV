@@ -56,6 +56,34 @@ public class AuthenticationService {
             .message("Inscription réussie ! Vous pouvez maintenant vous connecter.")
             .build();
   }
+  public AuthenticationResponse signupTch(RegisterRequest request) {
+    if (repository.existsByEmail(request.getEmail())) {
+      throw new IllegalArgumentException("L'email est déjà utilisé");
+    }
+
+    // Set default role to PATIENT if no role is provided
+    var role = request.getRole() != null ? request.getRole() : Role.TECHNICIEN;
+
+    var user = User.builder()
+            .username(request.getUsername())
+            .lastName(request.getLastname())
+            .email(request.getEmail())
+            .cin(request.getCin())
+            .specialite(request.getSpecialite())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .role(role)
+            .build();
+
+    repository.save(user);
+
+    var jwtToken = jwtService.generateToken(user);
+    return AuthenticationResponse.builder()
+            .accessToken(jwtToken)
+            .refreshToken(null)
+            .message("Inscription réussie ! Vous pouvez maintenant vous connecter.")
+            .build();
+  }
+
 
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {

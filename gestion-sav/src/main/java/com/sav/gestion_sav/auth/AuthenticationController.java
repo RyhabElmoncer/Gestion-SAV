@@ -30,6 +30,17 @@ public class AuthenticationController {
               .build());
     }
   }
+  @PostMapping("/registertech")
+  public ResponseEntity<AuthenticationResponse> registertech(@RequestBody RegisterRequest request) {
+    try {
+      AuthenticationResponse response = service.signupTch(request);
+      return new ResponseEntity<>(response, HttpStatus.CREATED);
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().body(AuthenticationResponse.builder()
+              .message(e.getMessage())
+              .build());
+    }
+  }
 
   // Endpoint for user authentication (login)
   @PostMapping("/authenticate")
