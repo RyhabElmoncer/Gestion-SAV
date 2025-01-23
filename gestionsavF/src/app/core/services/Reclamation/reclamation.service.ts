@@ -43,7 +43,11 @@ export class ReclamationService {
       catchError(this.handleError) // Gestion des erreurs
     );
   }
-
+  obtenirReclamationsParCin(cin: string): Observable<Reclamation[]> {
+    return this.http.get<Reclamation[]>(`${this.apiUrl}/cin/${cin}`).pipe(
+      catchError(this.handleError) // Gestion des erreurs
+    );
+  }
   /**
    * Supprime une réclamation par son ID.
    * @param id - L'ID de la réclamation à supprimer.

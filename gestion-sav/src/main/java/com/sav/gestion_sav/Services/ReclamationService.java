@@ -67,7 +67,15 @@ public class ReclamationService {
                 .cin(reclamation.getCin())// Inclure l'ID de l'article dans le DTO
                 .build();
     }
-
+    public List<ReclamationDTO> obtenirReclamationsParCin(String cin) {
+        List<Reclamation> reclamations = reclamationRepository.findByCin(cin);
+        if (reclamations.isEmpty()) {
+            throw new RuntimeException("Aucune réclamation trouvée pour le CIN : " + cin);
+        }
+        return reclamations.stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
     public ReclamationDTO changerStatutReclamation(Long id, String nouveauStatut) {
         Reclamation reclamation = reclamationRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new RuntimeException("Réclamation non trouvée avec l'ID : " + id));

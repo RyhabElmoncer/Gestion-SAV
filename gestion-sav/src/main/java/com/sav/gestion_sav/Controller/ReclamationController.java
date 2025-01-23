@@ -18,7 +18,10 @@ public class ReclamationController {
     public ReclamationDTO ajouterReclamation(@RequestBody ReclamationDTO reclamationDTO) {
         return reclamationService.ajouterReclamation(reclamationDTO);
     }
-
+    @GetMapping("/cin/{cin}")
+    public List<ReclamationDTO> obtenirReclamationsParCin(@PathVariable String cin) {
+        return reclamationService.obtenirReclamationsParCin(cin);
+    }
     @GetMapping
     public List<ReclamationDTO> obtenirToutesReclamations() {
         return reclamationService.obtenirToutesReclamations();
