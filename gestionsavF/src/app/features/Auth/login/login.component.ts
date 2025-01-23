@@ -35,7 +35,7 @@ export class LoginComponent {
       (response) => {
         console.log('Réponse reçue :', response);
 
-        const userId = response.id; 
+        const cin = response.cin; 
         const role = response.role; 
 
         if (!response.access_token || !role) {
@@ -44,7 +44,7 @@ export class LoginComponent {
           return;
         }
 
-        localStorage.setItem('userId', userId.toString());
+        localStorage.setItem('cin', cin.toString());
         localStorage.setItem('token', response.access_token); 
         localStorage.setItem('role', role); 
 

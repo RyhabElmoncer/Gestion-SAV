@@ -1,28 +1,49 @@
-<div class="ajouter-reclamation-container">
-    <h2>Ajouter une réclamation</h2>
+<div class="container ajouter-reclamation-container">
+  <h2>Ajouter une réclamation</h2>
   
-    <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full-width">
-        <mat-label>Description</mat-label>
-        <textarea 
-          matInput 
-          formControlName="description" 
-          placeholder="Décrivez votre problème">
-        </textarea>
-        <mat-error *ngIf="reclamationForm.get('description')?.invalid && reclamationForm.get('description')?.touched">
-          La description est requise (min. 10 caractères)
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field class="full-width">
-        <mat-label>Date</mat-label>
-        <input matInput type="date" formControlName="date">
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit">
-        <mat-icon>send</mat-icon> Soumettre
-      </button>
-      
-    </form>
-  </div>
-  
+  <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        placeholder="Décrivez votre réclamation"
+        rows="4"
+      ></textarea>
+      <div *ngIf="reclamationForm.controls['description'].invalid && reclamationForm.controls['description'].touched" class="text-danger">
+        <small *ngIf="reclamationForm.controls['description'].hasError('required')">La description est requise.</small>
+        <small *ngIf="reclamationForm.controls['description'].hasError('minlength')">La description doit contenir au moins 10 caractères.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="articleId">Article</label>
+      <select id="articleId" formControlName="articleId" class="form-control">
+        <option value="">Sélectionner un article</option>
+        <option *ngFor="let article of articles" [value]="article.id">{{ article.nom }}</option>
+      </select>
+      <div *ngIf="reclamationForm.controls['articleId'].invalid && reclamationForm.controls['articleId'].touched" class="text-danger">
+        <small *ngIf="reclamationForm.controls['articleId'].hasError('required')">L'article est requis.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateSoumission">Date de soumission</label>
+      <input
+        type="date"
+        id="dateSoumission"
+        formControlName="dateSoumission"
+        class="form-control"
+        [ngClass]="{'is-invalid': reclamationForm.controls['dateSoumission'].invalid && reclamationForm.controls['dateSoumission'].touched}"
+      />
+      <div *ngIf="reclamationForm.controls['dateSoumission'].invalid && reclamationForm.controls['dateSoumission'].touched" class="text-danger">
+        <small *ngIf="reclamationForm.controls['dateSoumission'].hasError('required')">La date est requise.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting || !reclamationForm.valid" class="btn btn-primary btn-block">
+      {{ isSubmitting ? 'Soumission en cours...' : 'Soumettre' }}
+    </button>
+  </form>
+</div>

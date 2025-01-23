@@ -1,59 +1,79 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Article } from '../../../models/Article';
+import { ArticleService } from '../../../core/services/Article/article.service';
 import { ReclamationService } from '../../../core/services/Reclamation/reclamation.service';
-import { Router } from '@angular/router';
-import { StatutReclamation } from '../../../models/StatutReclamation';
+import { Reclamation } from '../../../models/Reclamation'; // Importez le modèle Reclamation
+import { StatutReclamation } from '../../../models/StatutReclamation'; // Importez l'énumération StatutReclamation
 
 @Component({
   selector: 'app-ajouter-reclamation',
   templateUrl: './ajouter-reclamation.component.html',
-  styleUrls: ['./ajouter-reclamation.component.css']
+  styleUrls: ['./ajouter-reclamation.component.css'],
 })
-export class AjouterReclamationComponent {
-  reclamationForm: FormGroup;
-  isSubmitting: boolean = false; // Pour contrôler l'état du formulaire pendant l'envoi
-
-  // Définir les valeurs possibles pour le statut
-  StatutReclamation = StatutReclamation;
+export class AjouterReclamationComponent implements OnInit {
+  reclamationForm!: FormGroup;
+  articles: Article[] = [];
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
-    private reclamationService: ReclamationService,
-    private router: Router
-  ) {
-    // Initialisation du formulaire avec validation
+    private articleService: ArticleService,
+    private reclamationService: ReclamationService // Injectez le service ReclamationService
+  ) {}
+
+  ngOnInit(): void {
+    this.initForm();
+    this.loadArticles();
+  }
+
+  private initForm() {
     this.reclamationForm = this.fb.group({
       description: ['', [Validators.required, Validators.minLength(10)]],
-      dateSoumission: [new Date().toISOString().substring(0, 10), Validators.required],  // Date par défaut
-      statut: [StatutReclamation.EN_COURS]  // Utilisation de l'énumération
+      articleId: ['', Validators.required],
+      dateSoumission: ['', Validators.required],
     });
   }
 
-  // Méthode appelée lors de la soumission du formulaire
-  onSubmit(): void {
-    console.log('Soumission du formulaire en cours...');
-
-    if (this.reclamationForm.valid) {
-      console.log('Formulaire valide, envoi des données:', this.reclamationForm.value);
-      this.isSubmitting = true; // Empêche plusieurs soumissions
-
-      this.reclamationService.ajouterReclamation(this.reclamationForm.value)
-        .subscribe({
-          next: () => {
-            alert('Réclamation ajoutée avec succès !');
-            this.router.navigate(['/dashboard-client/liste-rec']);
-          },
-          error: (err) => {
-            console.error('Erreur lors de l\'ajout:', err);
-            alert('Une erreur est survenue lors de l\'ajout.');
-          },
-          complete: () => {
-            this.isSubmitting = false; // Réinitialiser l'état une fois l'envoi terminé
-          }
-        });
+  private loadArticles() {
+    const cin = localStorage.getItem('cin'); // Récupérer le CIN depuis localStorage
+    if (cin) {
+      this.articleService.getArticlesByCin(cin).subscribe({
+        next: (data) => (this.articles = data),
+        error: (err) => console.error('Erreur lors du chargement des articles :', err),
+      });
     } else {
-      console.log('Formulaire invalide');
-      alert('Veuillez vérifier les champs du formulaire.');
+      console.error('CIN non trouvé dans localStorage');
+    }
+  }
+
+  onSubmit(): void {
+    if (this.reclamationForm.valid) {
+      this.isSubmitting = true;
+
+      // Récupérer les valeurs du formulaire
+      const { description, articleId, dateSoumission } = this.reclamationForm.value;
+
+      // Créer une instance de Reclamation
+      const reclamation = new Reclamation(
+        description,
+        dateSoumission,
+        StatutReclamation.EN_COURS, // Statut par défaut
+        articleId
+      );
+
+      // Envoyer la réclamation au backend
+      this.reclamationService.ajouterReclamation(reclamation).subscribe({
+        next: (response) => {
+          console.log('Réclamation ajoutée avec succès :', response);
+          this.isSubmitting = false;
+          this.reclamationForm.reset(); // Réinitialiser le formulaire
+        },
+        error: (err) => {
+          console.error('Erreur lors de l\'ajout de la réclamation :', err);
+          this.isSubmitting = false;
+        },
+      });
     }
   }
 }

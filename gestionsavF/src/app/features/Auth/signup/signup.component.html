@@ -56,19 +56,19 @@
 
       <!-- Champ Adresse -->
       <div class="form-group">
-        <label for="adresse">Adresse</label>
+        <label for="cin">cin</label>
         <input
           type="text"
-          id="adresse"
+          id="cin"
           class="form-control"
-          placeholder="Entrez votre adresse"
-          formControlName="adresse"
+          placeholder="Entrez votre cin"
+          formControlName="cin"
         />
-        <p *ngIf="signupForm.get('adresse')?.hasError('required') && signupForm.get('adresse')?.touched" class="error">
+        <p *ngIf="signupForm.get('cin')?.hasError('required') && signupForm.get('cin')?.touched" class="error">
           Ce champ est obligatoire.
         </p>
-        <p *ngIf="signupForm.get('adresse')?.hasError('minlength') && signupForm.get('adresse')?.touched" class="error">
-          L'adresse doit contenir au moins 6 caractères.
+        <p *ngIf="signupForm.get('cin')?.hasError('minlength') && signupForm.get('cin')?.touched" class="error">
+        cin  doit contenir au moins 8 caractères.
         </p>
       </div>
 

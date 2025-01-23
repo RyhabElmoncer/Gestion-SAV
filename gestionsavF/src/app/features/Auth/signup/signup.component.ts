@@ -24,7 +24,7 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       lastname: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      adresse: ['', [Validators.required, Validators.minLength(6)]],
+      cin: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
