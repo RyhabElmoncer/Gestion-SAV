@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardResponsableComponent } from './dashboard-responsable/dashboard-responsable.component';
 import { AuthGuard } from '../../core/Guard/auth.guard';
-import { AjouterArticleComponent } from './ajouter-article/ajouter-article.component';
 import { ListeArticlesComponent } from './liste-articles/liste-articles.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
@@ -11,6 +10,7 @@ import { AjouterReclamationComponent } from './ajouter-reclamation/ajouter-recla
 import { MesReclamationsComponent } from './mes-reclamations/mes-reclamations.component';
 import { AjouttechComponent } from './ajouttech/ajouttech.component';
 import { DashboardTechnicienComponent } from './dashboard-technicien/dashboard-technicien.component';
+import { AjouterArticleComponent } from './ajouter-article/ajouter-article.component';
 const routes: Routes = [
   {
     path: 'dashboard-client', 

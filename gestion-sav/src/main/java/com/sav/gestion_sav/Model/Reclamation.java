@@ -24,4 +24,7 @@ public class Reclamation {
 
     @Enumerated(EnumType.STRING)
     private StatutReclamation statut;
+    @ManyToOne
+    @JoinColumn(name = "article_id", nullable = false)
+    private Article article;
 }

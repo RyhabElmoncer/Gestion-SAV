@@ -15,23 +15,25 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ReclamationService {
     private final ReclamationRepository reclamationRepository;
-    private final ClientRepository clientRepository;
     private final ArticleRepository articleRepository;
 
-    // Ajout de la gestion de l'exception si le statut est invalide
     public ReclamationDTO ajouterReclamation(ReclamationDTO reclamationDTO) {
         StatutReclamation statut;
         try {
-            // Vérification du statut de réclamation
             statut = StatutReclamation.valueOf(reclamationDTO.getStatut());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Statut de réclamation invalide: " + reclamationDTO.getStatut());
         }
 
+        // Récupérer l'article par son ID
+        Article article = articleRepository.findById(reclamationDTO.getArticleId())
+                .orElseThrow(() -> new RuntimeException("Article non trouvé avec l'ID : " + reclamationDTO.getArticleId()));
+
         Reclamation reclamation = Reclamation.builder()
                 .description(reclamationDTO.getDescription())
                 .dateSoumission(LocalDate.now())
                 .statut(statut)
+                .article(article) // Associer l'article à la réclamation
                 .build();
 
         Reclamation savedReclamation = reclamationRepository.save(reclamation);
@@ -60,19 +62,18 @@ public class ReclamationService {
                 .description(reclamation.getDescription())
                 .dateSoumission(reclamation.getDateSoumission())
                 .statut(reclamation.getStatut().name())
+                .articleId(reclamation.getArticle().getId()) // Inclure l'ID de l'article dans le DTO
                 .build();
     }
+
     public ReclamationDTO changerStatutReclamation(Long id, String nouveauStatut) {
-        // Recherche de la réclamation par ID
         Reclamation reclamation = reclamationRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new RuntimeException("Réclamation non trouvée avec l'ID : " + id));
 
         try {
-            // Vérification et mise à jour du statut
             StatutReclamation statut = StatutReclamation.valueOf(nouveauStatut);
             reclamation.setStatut(statut);
 
-            // Sauvegarde de la réclamation mise à jour
             Reclamation updatedReclamation = reclamationRepository.save(reclamation);
 
             return mapToDTO(updatedReclamation);
@@ -80,5 +81,4 @@ public class ReclamationService {
             throw new IllegalArgumentException("Statut de réclamation invalide : " + nouveauStatut);
         }
     }
-
 }

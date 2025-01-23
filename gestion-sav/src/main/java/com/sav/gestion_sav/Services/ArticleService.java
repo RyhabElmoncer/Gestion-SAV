@@ -39,7 +39,10 @@ public class ArticleService {
         List<Article> articles = articleRepository.findAll();
         return articles.stream().map(articleMapper::toDTO).toList();
     }
-
+    public List<ArticleDTO> getArticlesByCin(String cin) {
+        List<Article> articles = articleRepository.findByCin(cin);
+        return articles.stream().map(articleMapper::toDTO).toList();
+    }
     // Delete an article by id
     public void deleteArticle(Long id) {
         articleRepository.deleteById(id);

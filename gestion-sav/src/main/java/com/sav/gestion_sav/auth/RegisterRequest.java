@@ -16,7 +16,7 @@ public class RegisterRequest {
   private String lastname;
   private String email;
   private String password;
-  private String adresse;
+  private String cin;
   private String specialite;
   private Role role;
   public String getEmail() {

@@ -34,6 +34,15 @@ public class ArticleController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/by-cin/{cin}")
+    public ResponseEntity<List<ArticleDTO>> getArticlesByCin(@PathVariable String cin) {
+        List<ArticleDTO> articles = articleService.getArticlesByCin(cin);
+        if (!articles.isEmpty()) {
+            return ResponseEntity.ok(articles);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 
     // Create or update an article
     @PostMapping
