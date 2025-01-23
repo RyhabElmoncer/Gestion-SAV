@@ -1,10 +1,9 @@
-
 export interface Article {
-    id: number; // Ensure id is a number
-        nom: string;
+    id: number;
+    nom: string;
     marque: string;
-    dateAchat: string;  
-    dureeGarantie: number;  
+    dateAchat: string;
+    dureeGarantie: number;
     description: string;
+    cin: string;
   }
-  

@@ -4,21 +4,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component'; // Composant Login
-import { SignupComponent } from './signup/signup.component'; // Composant Signup
-import { AuthRoutingModule } from './auth-routing.module'; // Module de routage pour Auth
+import { AuthRoutingModule } from './auth-routing.module';
+
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
-    LoginComponent,  // Déclaration du composant Login
-    SignupComponent, // Déclaration du composant Signup
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
-    CommonModule,        // Fonctionnalités Angular de base
-    FormsModule,         // Pour la directive [(ngModel)]
-    ReactiveFormsModule, // Pour les formulaires réactifs
-    RouterModule,        // Nécessaire pour le routage interne
-    AuthRoutingModule,   // Routage spécifique au module Auth
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    AuthRoutingModule,
   ],
 })
 export class AuthModule {}
