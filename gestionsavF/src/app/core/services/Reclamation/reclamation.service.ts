@@ -59,11 +59,12 @@ export class ReclamationService {
     );
   }
 
-  /**
-   * Gère les erreurs HTTP.
-   * @param error - L'erreur HTTP.
-   * @returns Un Observable avec un message d'erreur.
-   */
+  changerStatutReclamation(id: string, nouveauStatut: string): Observable<Reclamation> {
+    return this.http.put<Reclamation>(`${this.apiUrl}/${id}/changer-statut`, { statut: nouveauStatut }).pipe(
+      catchError(this.handleError) // Gestion des erreurs
+    );
+  }
+  
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Une erreur inconnue est survenue.';
     if (error.error instanceof ErrorEvent) {

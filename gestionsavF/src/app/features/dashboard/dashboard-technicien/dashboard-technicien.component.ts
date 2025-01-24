@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard-technicien',
   templateUrl: './dashboard-technicien.component.html',
-  styleUrl: './dashboard-technicien.component.css'
+  styleUrls: ['./dashboard-technicien.component.css']
 })
 export class DashboardTechnicienComponent implements OnInit {
   reclamations: Reclamation[] = [];
 
-  constructor(private reclamationService: ReclamationService,private router: Router) {}
+  constructor(private reclamationService: ReclamationService, private router: Router) {}
 
   ngOnInit(): void {
     this.reclamationService.obtenirToutesReclamations().subscribe(
@@ -23,7 +23,33 @@ export class DashboardTechnicienComponent implements OnInit {
       }
     );
   }
-  
+
+  // Define the onStatutChange method
+  onStatutChange(event: Event, id: string | undefined): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const nouveauStatut = selectElement.value;
+    this.changerStatut(id, nouveauStatut);
+  }
+
+  changerStatut(id: string | undefined, nouveauStatut: string): void {
+    if (!id) {
+      console.error('ID de la réclamation est invalide');
+      return;
+    }
+
+    this.reclamationService.changerStatutReclamation(id, nouveauStatut).subscribe(
+      (reclamationMiseAJour) => {
+        const index = this.reclamations.findIndex(r => r.id === id);
+        if (index !== -1) {
+          this.reclamations[index] = reclamationMiseAJour;
+        }
+      },
+      (error) => {
+        console.error('Erreur lors du changement de statut', error);
+      }
+    );
+  }
+
   deconnecter(): void {
     // Supprimer les données de l'utilisateur du localStorage
     localStorage.removeItem('cin');

@@ -1,47 +1,27 @@
-<div class="reclamations-container">
-    <!-- Bouton de déconnexion -->
-    <div class="d-flex justify-content-end mb-3">
-      <button class="btn btn-danger" (click)="deconnecter()">
-        <i class="fas fa-sign-out-alt"></i> Déconnexion
-      </button>
-    </div>
+<tr *ngFor="let reclamation of reclamations">
+  <td>{{ reclamation.description }}</td>
+  <td class="text-center">{{ reclamation.dateSoumission | date: 'dd/MM/yyyy' }}</td>
+  <td class="text-center">
+    <span
+      [ngClass]="{
+        'badge bg-warning text-dark': reclamation.statut === 'EN_COURS',
+        'badge bg-success': reclamation.statut === 'TRAITEE',
+        'badge bg-danger': reclamation.statut === 'EN_ATTENTE'
+      }"
+    >
+      {{ reclamation.statut }}
+    </span>
+  </td>
+  <td class="text-center">
+    <select
+    (change)="onStatutChange($event, reclamation?.id)"
+    class="form-select"
+    [ngModel]="reclamation.statut"
+  >
+    <option value="EN_ATTENTE">En attente</option>
+    <option value="EN_COURS">En cours</option>
+    <option value="TRAITEE">Traitée</option>
+  </select>
   
-    <h2 class="table-title">
-      <i class="fas fa-clipboard-list"></i> Listes Réclamations
-    </h2>
-  
-    <div class="table-responsive" *ngIf="reclamations.length > 0; else noReclamations">
-      <table class="table table-bordered table-hover shadow-sm">
-        <thead class="table-primary text-center">
-          <tr>
-            <th scope="col"><i class="fas fa-info-circle"></i> Description</th>
-            <th scope="col"><i class="far fa-calendar-alt"></i> Date de soumission</th>
-            <th scope="col"><i class="fas fa-tasks"></i> Statut</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let reclamation of reclamations">
-            <td>{{ reclamation.description }}</td>
-            <td class="text-center">{{ reclamation.dateSoumission | date: 'dd/MM/yyyy' }}</td>
-            <td class="text-center">
-              <span 
-                [ngClass]="{
-                  'badge bg-warning text-dark': reclamation.statut === 'EN_COURS',
-                  'badge bg-success': reclamation.statut === 'TRAITEE',
-                  'badge bg-danger': reclamation.statut === 'EN_ATTENTE'
-                }"
-              >
-                {{ reclamation.statut }}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <ng-template #noReclamations>
-      <div class="alert alert-info text-center" role="alert">
-        <i class="fas fa-exclamation-circle"></i> Aucune réclamation trouvée.
-      </div>
-    </ng-template>
-  </div>
+  </td>
+</tr>

@@ -41,7 +41,7 @@ export class AjouttechComponent { signupForm: FormGroup; // Formulaire de créat
 
     this.authService.registertech(this.signupForm.value).subscribe({
       next: () => {
-        console.log('Inscription réussie');
+        console.log('ajout  réussie');
         this.isSubmitting = false;
         
       },
